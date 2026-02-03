@@ -29,8 +29,55 @@
 每条记录常用字段：
 
 - `hospitalNumber` / `inpatient_no` / `inpatientNo` / `recordNo`：病历号（脚本会自动择一）
-- `operateDate`：操作日期（可选；不传则用 `CFG.DATE_FALLBACK`）
+- `operateDate` / `operate_date` / `date`：操作日期（可选；不传则用 `CFG.DATE_FALLBACK`）
 - `remark` / `remarks`：备注（可选；配合 `CFG.REMARK`）
+
+推荐的最小输入示例：
+
+```json
+[
+	{
+		"hospitalNumber": "123456",
+		"operateDate": "2025-04-20",
+		"remark": "可选：备注"
+	}
+]
+```
+
+如果你的数据是 Python 工具生成的（字段名多为下划线风格），也可以直接用：
+
+- 病历号：`inpatient_no`
+- 操作日期：`operate_date`
+
+## records.md 的 Markdown 表格格式（表头要求）
+
+脚本 [extract_records_md_to_operate_json.py](extract_records_md_to_operate_json.py) 会在 Markdown 里自动扫描表格，只要表头行包含 **`手术间`** 和 **`手术名称`** 两列，就会尝试抽取。
+
+支持的列名（脚本会按这些表头取值；缺列会填空）：
+
+- `手术间`
+- `科室`
+- `床号`（或 `号`）
+- `住院号`
+- `姓名`
+- `性别`
+- `年龄`
+- `手术名称`
+- `主刀医生`
+- `医助1` / `医助2` / `医助3` / `医助4`
+- `麻醉方法`
+- `主麻`
+- `副麻`
+- `备注`
+
+表头示例（推荐直接照抄这一行作为第一行表头）：
+
+```text
+| 手术间 | 科室 | 床号 | 住院号 | 姓名 | 性别 | 年龄 | 手术名称 | 主刀医生 | 医助1 | 医助2 | 医助3 | 医助4 | 麻醉方法 | 主麻 | 副麻 | 备注 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+```
+
+同一个 `records.md` 里允许有多段表格，脚本会合并抽取。
 
 ## 配置项（CFG）
 
