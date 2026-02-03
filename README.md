@@ -1,6 +1,6 @@
 ## HN LZ Auto script
 
-这个仓库主要包含一个 Tampermonkey 脚本：[user_script.js](user_script.js)，用于在轮转/技能录入页面里自动打开“添加”弹窗并自动填写（科室/编号/日期/病历类型/主要诊断/技能/备注），支持批量录入。
+这个仓库主要包含一个 Tampermonkey 脚本：[LZ_Auto.user.js](LZ_Auto.user.js)，用于在轮转/技能录入页面里自动打开“添加”弹窗并自动填写（科室/编号/日期/病历类型/主要诊断/技能/备注），支持批量录入。
 
 注意：本仓库默认不会提交本地数据文件（如 `records*.md`、`records*.json`）和根目录图片；规则已写入 .gitignore。
 
@@ -8,7 +8,7 @@
 
 1) 浏览器安装 Tampermonkey 扩展
 
-2) 新建脚本，把 [user_script.js](user_script.js) 的内容完整粘贴进去并保存
+2) 新建脚本，把 [LZ_Auto.user.js](LZ_Auto.user.js) 的内容完整粘贴进去并保存
 
 3) 打开系统页面（脚本头部 `@match` 指定的地址），右上角会出现 `LZ Auto` 按钮
 
@@ -81,7 +81,7 @@
 
 ## 配置项（CFG）
 
-配置在 [user_script.js](user_script.js) 顶部的 `const CFG = { ... }`。
+配置在 [LZ_Auto.user.js](LZ_Auto.user.js) 顶部的 `const CFG = { ... }`。
 
 ### 基础
 
@@ -142,7 +142,7 @@
 在项目目录运行：
 
 ```powershell
-c:/Users/48969/Documents/WorkSpace/mengmeng/skill_record/.venv/Scripts/python.exe extract_records_md_to_operate_json.py --input records.md --output records_surgery_with_operate_date.json --pretty --seed 42
+uv run python extract_records_md_to_operate_json.py --input records.md --output records_surgery_with_operate_date.json --pretty --seed 42
 ```
 
 说明：
@@ -152,7 +152,7 @@ c:/Users/48969/Documents/WorkSpace/mengmeng/skill_record/.venv/Scripts/python.ex
 ### 2) 修改随机日期范围（2025 年 4~8 月）
 
 ```powershell
-c:/Users/48969/Documents/WorkSpace/mengmeng/skill_record/.venv/Scripts/python.exe extract_records_md_to_operate_json.py --input records.md --output records_surgery_with_operate_date.json --pretty --operate-start 2025-04-01 --operate-end 2025-08-31
+uv run python extract_records_md_to_operate_json.py --input records.md --output records_surgery_with_operate_date.json --pretty --operate-start 2025-04-01 --operate-end 2025-08-31
 ```
 
 ### 3) 参数速查
