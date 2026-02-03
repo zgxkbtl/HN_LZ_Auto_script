@@ -11,7 +11,10 @@ wheels/
 
 # Local data files (do not commit)
 records*.md
-*.json
+records*.json
+
+# Local API notes (may contain sensitive cookies)
+api.txt
 
 # Root-level images (screenshots, WeChat exports, etc.)
 /*.png

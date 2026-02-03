@@ -2,7 +2,7 @@
 
 这个仓库主要包含一个 Tampermonkey 脚本：[user_script.js](user_script.js)，用于在轮转/技能录入页面里自动打开“添加”弹窗并自动填写（科室/编号/日期/病历类型/主要诊断/技能/备注），支持批量录入。
 
-注意：本仓库默认不会提交本地数据文件（如 `records*.md`、`*.json`）和根目录图片；规则已写入 .gitignore。
+注意：本仓库默认不会提交本地数据文件（如 `records*.md`、`records*.json`）和根目录图片；规则已写入 .gitignore。
 
 ## 使用方法（Tampermonkey）
 
